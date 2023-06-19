@@ -1,6 +1,6 @@
 import React from 'react';
 import s from "./GameSymbol.module.scss";
-import {SYMBOL_X, SymbolType} from "App";
+import {SYMBOL_X, SymbolType} from "app/App";
 
 type PropsType = {
     symbol: SymbolType
