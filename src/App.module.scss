@@ -1,0 +1,48 @@
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+  margin: 100px auto;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.gameInfo {
+  margin-bottom: 10px;
+}
+
+.gameField {
+  display: grid;
+  grid-template-columns: repeat(3, 30px);
+  grid-template-rows: repeat(3, 30px);
+  padding: 1px 0 0 1px;
+  margin-bottom: 20px;
+}
+
+.cell {
+  border: 1px solid grey;
+  margin: -1px 0 0 -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.cellWin {
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.symbol {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.symbolX {
+  color: red;
+}
+
+.symbolO {
+  color: green;
+}
