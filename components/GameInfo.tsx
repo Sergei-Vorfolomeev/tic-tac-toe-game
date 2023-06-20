@@ -1,7 +1,8 @@
 import React from 'react';
-import s from "./GameInfo.module.scss";
-import {SymbolType} from "app/App";
-import {GameSymbol} from "components/gameSymbol/GameSymbol";
+import s from "../styles/GameInfo.module.scss";
+import {GameSymbol} from "./GameSymbol";
+import {SymbolType} from "./Game";
+
 
 type PropsType = {
     isDraw: boolean
