@@ -1,8 +1,13 @@
 import * as React from "react";
 
-export const SquareIcon = () => {
+type PropsType = {
+  className?: string;
+};
+
+export const SquareIcon = ({ className }: PropsType) => {
   return (
     <svg
+      className={className}
       width="12"
       height="12"
       viewBox="0 0 12 12"

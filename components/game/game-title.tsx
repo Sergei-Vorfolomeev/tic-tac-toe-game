@@ -5,7 +5,7 @@ import { StarIcon } from "./icons/star-icon";
 import { UserIcon } from "./icons/user-icon";
 import { HistoryIcon } from "./icons/history-icon";
 
-export const GameTitle = () => {
+export function GameTitle() {
   return (
     <div className="pl-2">
       <Link
@@ -27,4 +27,4 @@ export const GameTitle = () => {
       </div>
     </div>
   );
-};
+}

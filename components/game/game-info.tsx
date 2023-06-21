@@ -2,6 +2,7 @@ import * as React from "react";
 import { Profile } from "../profile";
 import { clsx } from "clsx";
 import { CrossIcon } from "./icons/cross-icon";
+import { CircleIcon } from "./icons/circle-icon";
 
 export const GameInfo = ({ className }) => {
   return (
@@ -28,7 +29,7 @@ export const GameInfo = ({ className }) => {
         <div className="relative flex">
           <Profile className="w-44" />
           <div className="w-5 h-5 rounded-full bg-white shadow absolute -left-1 -top-1 flex justify-center items-center">
-            <CrossIcon />
+            <CircleIcon />
           </div>
         </div>
       </div>

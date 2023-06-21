@@ -4,7 +4,11 @@ import { clsx } from "clsx";
 
 const avatar = require("./avatar.png") as string;
 
-export const Profile = ({ className }) => {
+type PropsType = {
+  className?: string;
+};
+
+export const Profile = ({ className }: PropsType) => {
   return (
     <div
       className={clsx(

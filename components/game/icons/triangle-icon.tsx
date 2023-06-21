@@ -1,8 +1,13 @@
 import * as React from "react";
 
-export const TriangleIcon = () => {
+type PropsType = {
+  className?: string;
+};
+
+export const TriangleIcon = ({ className }: PropsType) => {
   return (
     <svg
+      className={className}
       width="12"
       height="12"
       viewBox="0 0 12 12"
