@@ -1,10 +1,16 @@
 import Head from "next/head";
 import type { AppProps } from "next/app";
 import "../styles/global.css";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div>
+    <div lang="en" className={inter.className}>
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -1,8 +1,10 @@
 import { Game } from "../components/game";
+import { Header } from "../components/header";
 
 export default function HomePage() {
   return (
-    <div>
+    <div className="bg-slate-50 min-h-screen">
+      <Header />
       <Game />
     </div>
   );
