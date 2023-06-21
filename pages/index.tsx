@@ -1,11 +1,15 @@
-import { Game } from "../components/game";
 import { Header } from "../components/header";
+import { GameInfo, GameTitle } from "../components/game/index";
 
 export default function HomePage() {
   return (
     <div className="bg-slate-50 min-h-screen">
       <Header />
-      <Game />
+      <main className="pt-6 mx-auto max-w-[616px]">
+        <GameTitle />
+        <GameInfo className={"mt-4"} />
+      </main>
+      {/*<Game />*/}
     </div>
   );
 }
