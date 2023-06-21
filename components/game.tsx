@@ -1,8 +1,8 @@
-import React from 'react';
-import {GameInfo} from "./GameInfo";
+import * as React from 'react';
+import {GameInfo} from "./game-info";
 import {useGameState} from "../common/hooks/useGameState";
-import {GameCell} from "./GameCell";
-import s from '../styles/Game.module.scss'
+import {GameCell} from "./game-cell";
+import ResetButton from "./reset-button";
 
 export type SymbolType = "X" | 'O' | null
 
@@ -18,13 +18,13 @@ export const Game = () => {
     } = useGameState()
 
     return (
-        <div className={s.game}>
+        <div className='flex flex-col items-center w-40 mx-auto my-24 p-5 border border-black'>
             <GameInfo isDraw={isDraw()}
                       currentStep={currentStep}
                       winnerSequence={winnerSequence}
                       winnerSymbol={winnerSymbol}
             />
-            <div className={s.gameField}>
+            <div className='grid grid-cols-[repeat(3,_30px)] grid-rows-[repeat(3,_30px)] pt-px pl-px mb-5'>
                 {cells.map((el, index) => {
                     const isWinner = winnerSequence?.includes(index)
                     return (
@@ -37,7 +37,7 @@ export const Game = () => {
                     )
                 })}
             </div>
-            <button onClick={resetGameHandler}>Reset</button>
+            <ResetButton onClick={resetGameHandler} />
         </div>
     );
 };
