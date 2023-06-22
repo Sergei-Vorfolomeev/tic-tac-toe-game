@@ -1,6 +1,6 @@
 import * as React from "react";
-import { GameSymbol } from "./game-symbol";
-import { SymbolType } from "./game";
+import { _gameSymbol } from "./_game-symbol";
+import { SymbolType } from "./_game";
 import { clsx } from "clsx";
 
 type PropsType = {
@@ -9,7 +9,7 @@ type PropsType = {
   isWinner: boolean | undefined;
 };
 
-export const GameCell = ({ symbol, onClick, isWinner }: PropsType) => {
+export const _gameCell = ({ symbol, onClick, isWinner }: PropsType) => {
   return (
     <button
       className={clsx(
@@ -18,7 +18,7 @@ export const GameCell = ({ symbol, onClick, isWinner }: PropsType) => {
       )}
       onClick={onClick}
     >
-      {symbol ? <GameSymbol symbol={symbol} /> : null}
+      {symbol ? <_gameSymbol symbol={symbol} /> : null}
     </button>
   );
 };

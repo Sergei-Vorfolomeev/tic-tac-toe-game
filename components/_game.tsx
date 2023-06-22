@@ -1,12 +1,12 @@
 import * as React from "react";
-import { GameInfo } from "./game-info";
+import { _gameInfo } from "./_game-info";
 import { useGameState } from "../common/hooks/useGameState";
-import { GameCell } from "./game-cell";
-import ResetButton from "./reset-button";
+import { _gameCell } from "./_game-cell";
+import _resetButton from "./_reset-button";
 
 export type SymbolType = "X" | "O" | null;
 
-export const Game = () => {
+export const _game = () => {
   const {
     cells,
     currentStep,
@@ -19,7 +19,7 @@ export const Game = () => {
 
   return (
     <div className="flex flex-col items-center w-40 mx-auto my-24 p-5 border border-black">
-      <GameInfo
+      <_gameInfo
         isDraw={isDraw()}
         currentStep={currentStep}
         winnerSequence={winnerSequence}
@@ -29,7 +29,7 @@ export const Game = () => {
         {cells.map((el, index) => {
           const isWinner = winnerSequence?.includes(index);
           return (
-            <GameCell
+            <_gameCell
               key={index}
               symbol={el}
               onClick={() => onClickCellHandler(index)}
@@ -38,7 +38,7 @@ export const Game = () => {
           );
         })}
       </div>
-      <ResetButton onClick={resetGameHandler} />
+      <_resetButton onClick={resetGameHandler} />
     </div>
   );
 };

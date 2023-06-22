@@ -1,6 +1,6 @@
 import * as React from "react";
-import { GameSymbol } from "./game-symbol";
-import { SymbolType } from "./game";
+import { _gameSymbol } from "./_game-symbol";
+import { SymbolType } from "./_game";
 
 type PropsType = {
   isDraw: boolean;
@@ -9,7 +9,7 @@ type PropsType = {
   winnerSymbol: SymbolType | undefined;
 };
 
-export const GameInfo = ({
+export const _gameInfo = ({
   isDraw,
   currentStep,
   winnerSequence,
@@ -22,14 +22,14 @@ export const GameInfo = ({
   if (winnerSymbol && winnerSequence) {
     return (
       <div className="mb-2.5">
-        Winner: <GameSymbol symbol={winnerSymbol} />
+        Winner: <_gameSymbol symbol={winnerSymbol} />
       </div>
     );
   }
 
   return (
     <div className="mb-2.5">
-      Step: <GameSymbol symbol={currentStep} />
+      Step: <_gameSymbol symbol={currentStep} />
     </div>
   );
 };

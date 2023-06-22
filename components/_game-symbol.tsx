@@ -1,13 +1,13 @@
 import * as React from "react";
-import { SYMBOL_O, SYMBOL_X } from "./constants";
-import { SymbolType } from "./game";
+import { SYMBOL_O, SYMBOL_X } from "./_constants";
+import { SymbolType } from "./_game";
 import { clsx } from "clsx";
 
 type PropsType = {
   symbol: SymbolType;
 };
 
-export const GameSymbol = ({ symbol }: PropsType) => {
+export const _gameSymbol = ({ symbol }: PropsType) => {
   return (
     <span
       className={clsx(

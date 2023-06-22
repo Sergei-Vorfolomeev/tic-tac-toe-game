@@ -4,7 +4,7 @@ type PropsType = {
   onClick: () => void;
 };
 
-const ResetButton = ({ onClick }: PropsType) => {
+const _resetButton = ({ onClick }: PropsType) => {
   return (
     <button
       onClick={onClick}
@@ -15,4 +15,4 @@ const ResetButton = ({ onClick }: PropsType) => {
   );
 };
 
-export default ResetButton;
+export default _resetButton;

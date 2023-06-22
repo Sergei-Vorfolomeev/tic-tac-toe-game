@@ -10,7 +10,6 @@ export default function HomePage() {
         <GameInfo className={"mt-4"} />
         <GameField className={"mt-6"} />
       </main>
-      {/*<Game />*/}
     </div>
   );
 }
