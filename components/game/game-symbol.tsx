@@ -7,7 +7,7 @@ import { SquareIcon } from "./icons/square-icon";
 
 type PropsType = {
   symbol: SymbolType;
-  className: string;
+  className?: string;
 };
 
 export const GameSymbol = ({ symbol, className }: PropsType) => {

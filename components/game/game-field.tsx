@@ -8,11 +8,13 @@ import { GameSymbol } from "./game-symbol";
 import { useGameState } from "./hooks/use-game-state";
 
 type PropsType = {
+  playersCount: number;
   className: string;
 };
 
-export const GameField = ({ className }: PropsType) => {
-  const { cells, currentMove, nextMove, onCellClickHandler } = useGameState();
+export const GameField = ({ className, playersCount }: PropsType) => {
+  const { cells, currentMove, nextMove, onCellClickHandler } =
+    useGameState(playersCount);
 
   const actions = (
     <>
