@@ -4,8 +4,6 @@ import { useGameState } from "../common/hooks/useGameState";
 import { _gameCell } from "./_game-cell";
 import _resetButton from "./_reset-button";
 
-export type SymbolType = "X" | "O" | null;
-
 export const _game = () => {
   const {
     cells,

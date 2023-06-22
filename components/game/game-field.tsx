@@ -1,17 +1,19 @@
 import * as React from "react";
 import { UiButton } from "../uikit/ui-button";
 import { GameFieldLayout } from "./game-field-layout";
-import { GameCurrentInfo } from "./game-current-info";
+import { GameMoveInfo } from "./game-move-info";
 import { GameGrid } from "./game-grid";
 import { GameCell } from "./game-cell";
+import { GameSymbol } from "./game-symbol";
+import { useGameState } from "./hooks/use-game-state";
 
 type PropsType = {
   className: string;
 };
 
-const cells = new Array(19 * 19).fill(null);
-
 export const GameField = ({ className }: PropsType) => {
+  const { cells, currentMove, nextMove, onCellClickHandler } = useGameState();
+
   const actions = (
     <>
       <UiButton className={""} size={"md"} variant={"primary"}>
@@ -25,10 +27,16 @@ export const GameField = ({ className }: PropsType) => {
 
   return (
     <GameFieldLayout className={className}>
-      <GameCurrentInfo actions={actions} />
+      <GameMoveInfo
+        actions={actions}
+        currentMove={currentMove}
+        nextMove={nextMove}
+      />
       <GameGrid>
-        {cells.map((cell, i) => (
-          <GameCell key={i}>{/*<CircleIcon className="w-5 h-5" />*/}</GameCell>
+        {cells.map((symbol, i) => (
+          <GameCell key={i} onClick={() => onCellClickHandler(i)}>
+            {symbol && <GameSymbol symbol={symbol} className={"w-5 h-5"} />}
+          </GameCell>
         ))}
       </GameGrid>
     </GameFieldLayout>

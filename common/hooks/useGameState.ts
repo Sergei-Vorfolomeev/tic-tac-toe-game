@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { SYMBOL_O, SYMBOL_X } from "../../components/_constants";
-import { SymbolType } from "../../components/_game";
+
+export type SymbolType = "X" | "O" | null;
 
 export const computeWinner = (cells: SymbolType[]) => {
   const lines = [
