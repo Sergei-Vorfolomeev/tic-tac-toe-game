@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SYMBOL_O, SYMBOL_X } from "../../components/_constants";
+import { SYMBOL_O, SYMBOL_X } from "../../components/_old/_constants";
 
 export type SymbolType = "X" | "O" | null;
 

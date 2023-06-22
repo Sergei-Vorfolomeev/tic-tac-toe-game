@@ -1,6 +1,6 @@
 import * as React from "react";
 import { _gameInfo } from "./_game-info";
-import { useGameState } from "../common/hooks/useGameState";
+import { useGameState } from "../../common/hooks/useGameState";
 import { _gameCell } from "./_game-cell";
 import _resetButton from "./_reset-button";
 

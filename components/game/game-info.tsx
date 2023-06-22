@@ -50,9 +50,14 @@ const players: PlayerType[] = [
 type PropsType = {
   playersCount: number;
   className: string;
+  currentMove: SymbolType;
 };
 
-export const GameInfo = ({ className, playersCount }: PropsType) => {
+export const GameInfo = ({
+  className,
+  playersCount,
+  currentMove,
+}: PropsType) => {
   return (
     <div
       className={clsx(
@@ -65,29 +70,9 @@ export const GameInfo = ({ className, playersCount }: PropsType) => {
           key={player.id}
           playerInfo={player}
           isRight={!!(index % 2)}
+          isTimerRunning={currentMove === player.symbol}
         />
       ))}
-      {/*<div className="flex gap-3 items-center">*/}
-      {/*  <div className="relative">*/}
-      {/*    <Profile className="w-44" />*/}
-      {/*    <div className="w-5 h-5 rounded-full bg-white shadow absolute -left-1 -top-1 flex justify-center items-center">*/}
-      {/*      <CrossIcon />*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*  <div className="h-6 w-px bg-slate-200 " />*/}
-      {/*  <div className="text-slate-900 text-lg font-semibold">01:08</div>*/}
-      {/*</div>*/}
-
-      {/*<div className="flex gap-3 items-center">*/}
-      {/*  <div className="text-orange-600 text-lg font-semibold">00:08</div>*/}
-      {/*  <div className="h-6 w-px bg-slate-200 " />*/}
-      {/*  <div className="relative flex">*/}
-      {/*    <Profile className="w-44" />*/}
-      {/*    <div className="w-5 h-5 rounded-full bg-white shadow absolute -left-1 -top-1 flex justify-center items-center">*/}
-      {/*      <CircleIcon />*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
     </div>
   );
 };

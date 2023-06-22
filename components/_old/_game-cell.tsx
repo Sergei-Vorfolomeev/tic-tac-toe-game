@@ -1,7 +1,7 @@
 import * as React from "react";
 import { _gameSymbol } from "./_game-symbol";
-import { SymbolType } from "./_game";
 import { clsx } from "clsx";
+import { SymbolType } from "../../common/hooks/useGameState";
 
 type PropsType = {
   symbol: SymbolType;

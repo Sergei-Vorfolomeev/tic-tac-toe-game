@@ -6,16 +6,25 @@ import { GameGrid } from "./game-grid";
 import { GameCell } from "./game-cell";
 import { GameSymbol } from "./game-symbol";
 import { useGameState } from "./hooks/use-game-state";
+import { SymbolType } from "./constants";
 
 type PropsType = {
   playersCount: number;
   className: string;
+  cells: SymbolType[];
+  currentMove: SymbolType;
+  nextMove: SymbolType;
+  onCellClickHandler: (cellIndex: number) => void;
 };
 
-export const GameField = ({ className, playersCount }: PropsType) => {
-  const { cells, currentMove, nextMove, onCellClickHandler } =
-    useGameState(playersCount);
-
+export const GameField = ({
+  className,
+  playersCount,
+  onCellClickHandler,
+  cells,
+  nextMove,
+  currentMove,
+}: PropsType) => {
   const actions = (
     <>
       <UiButton className={""} size={"md"} variant={"primary"}>
