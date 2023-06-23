@@ -51,12 +51,16 @@ type PropsType = {
   playersCount: number;
   className: string;
   currentMove: SymbolType;
+  isWinner: boolean;
+  onPlayerTimeOver: (symbol) => void;
 };
 
 export const GameInfo = ({
   className,
   playersCount,
   currentMove,
+  isWinner,
+  onPlayerTimeOver,
 }: PropsType) => {
   return (
     <div
@@ -70,7 +74,8 @@ export const GameInfo = ({
           key={player.id}
           playerInfo={player}
           isRight={!!(index % 2)}
-          isTimerRunning={currentMove === player.symbol}
+          isTimerRunning={currentMove === player.symbol && !isWinner}
+          onTimeOver={() => onPlayerTimeOver(player.symbol)}
         />
       ))}
     </div>

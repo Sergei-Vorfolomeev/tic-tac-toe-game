@@ -10,14 +10,16 @@ type PropsType = {
   playerInfo: PlayerType;
   isRight: boolean;
   isTimerRunning: boolean;
+  onTimeOver: () => void;
 };
 
 export const PlayerInfo = ({
   playerInfo,
   isRight,
   isTimerRunning,
+  onTimeOver,
 }: PropsType) => {
-  const [seconds, setSeconds] = useState(15);
+  const [seconds, setSeconds] = useState(5);
 
   const minutesString = String(Math.floor(seconds / 60)).padStart(2, "0");
   const secondsString = String(seconds % 60).padStart(2, "0");
@@ -38,10 +40,16 @@ export const PlayerInfo = ({
       }, 1000);
       return () => {
         clearInterval(interval);
-        setSeconds(60);
+        setSeconds(5);
       };
     }
   }, [isTimerRunning]);
+
+  useEffect(() => {
+    if (seconds === 0) {
+      onTimeOver();
+    }
+  }, [seconds]);
 
   return (
     <div className="flex gap-3 items-center">

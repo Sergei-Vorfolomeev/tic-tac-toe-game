@@ -16,16 +16,17 @@ type PropsType = {
   nextMove: SymbolType;
   onCellClickHandler: (cellIndex: number) => void;
   winnerSequence: number[];
+  winnerSymbol: SymbolType;
 };
 
 export const GameField = ({
   className,
-  playersCount,
   onCellClickHandler,
   cells,
   nextMove,
   currentMove,
   winnerSequence,
+  winnerSymbol,
 }: PropsType) => {
   const actions = (
     <>
@@ -51,6 +52,7 @@ export const GameField = ({
             key={index}
             onClick={() => onCellClickHandler(index)}
             isWinner={winnerSequence?.includes(index)}
+            disabled={!!winnerSymbol}
           >
             {symbol && <GameSymbol symbol={symbol} className={"w-5 h-5"} />}
           </GameCell>
