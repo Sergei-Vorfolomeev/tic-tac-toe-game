@@ -5,7 +5,6 @@ import { useGameState } from "../components/game/hooks/use-game-state";
 import { GameSymbol } from "../components/game/game-symbol";
 import { UiModal } from "../components/uikit/ui-modal";
 import { UiButton } from "../components/uikit/ui-button";
-import { log } from "util";
 
 export default function HomePage() {
   const [playersCount, setPlayersCount] = useState(4);
@@ -44,7 +43,11 @@ export default function HomePage() {
           <UiModal.Header className={""}>Game Over!</UiModal.Header>
           <UiModal.Body className={"px-6"}>
             <div className="text-sm">
-              Winner: <span className="text-teal-600">SergeyV</span>
+              Winner:{" "}
+              <span className="text-teal-600">
+                SergeyV
+                <GameSymbol symbol={winnerSymbol} className="w-5 h-5" />
+              </span>
             </div>
           </UiModal.Body>
           <UiModal.Footer className={"mt-auto p-6 flex gap-4 justify-end"}>

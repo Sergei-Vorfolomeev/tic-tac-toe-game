@@ -17,10 +17,14 @@ export const useGameState = (playersCount: number) => {
     }));
 
   const winnerSequence = computeWinner(cells);
-  const nextMove = getNextMove(currentMove, playersCount, playersTimeOver);
+  const nextMove: SymbolType = getNextMove(
+    currentMove,
+    playersCount,
+    playersTimeOver
+  );
 
   const winnerSymbol: SymbolType =
-    currentMove === nextMove ? currentMove : winnerSequence?.[0];
+    currentMove === nextMove ? currentMove : cells[winnerSequence?.[0]];
 
   const onCellClickHandler = (cellIndex: number) => {
     setGameState((lastGameState) => {
