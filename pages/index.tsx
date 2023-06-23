@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useGameState } from "../components/game/hooks/use-game-state";
 
 export default function HomePage() {
-  const [playersCount, setPlayersCount] = useState(4);
-  const { cells, currentMove, nextMove, onCellClickHandler } =
+  const [playersCount, setPlayersCount] = useState(2);
+  const { cells, currentMove, nextMove, onCellClickHandler, winnerSequence } =
     useGameState(playersCount);
 
   return (
@@ -25,6 +25,7 @@ export default function HomePage() {
           nextMove={nextMove}
           currentMove={currentMove}
           onCellClickHandler={onCellClickHandler}
+          winnerSequence={winnerSequence}
         />
       </main>
     </div>

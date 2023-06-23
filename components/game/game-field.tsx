@@ -15,6 +15,7 @@ type PropsType = {
   currentMove: SymbolType;
   nextMove: SymbolType;
   onCellClickHandler: (cellIndex: number) => void;
+  winnerSequence: number[];
 };
 
 export const GameField = ({
@@ -24,6 +25,7 @@ export const GameField = ({
   cells,
   nextMove,
   currentMove,
+  winnerSequence,
 }: PropsType) => {
   const actions = (
     <>
@@ -44,8 +46,12 @@ export const GameField = ({
         nextMove={nextMove}
       />
       <GameGrid>
-        {cells.map((symbol, i) => (
-          <GameCell key={i} onClick={() => onCellClickHandler(i)}>
+        {cells.map((symbol, index) => (
+          <GameCell
+            key={index}
+            onClick={() => onCellClickHandler(index)}
+            isWinner={winnerSequence?.includes(index)}
+          >
             {symbol && <GameSymbol symbol={symbol} className={"w-5 h-5"} />}
           </GameCell>
         ))}
