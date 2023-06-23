@@ -3,6 +3,9 @@ import { GameField, GameInfo, GameTitle } from "../components/game";
 import { useState } from "react";
 import { useGameState } from "../components/game/hooks/use-game-state";
 import { GameSymbol } from "../components/game/game-symbol";
+import { UiModal } from "../components/uikit/ui-modal";
+import { UiButton } from "../components/uikit/ui-button";
+import { log } from "util";
 
 export default function HomePage() {
   const [playersCount, setPlayersCount] = useState(4);
@@ -12,7 +15,6 @@ export default function HomePage() {
     nextMove,
     onCellClickHandler,
     winnerSequence,
-    playersTimeOver,
     handlePlayerTimeOver,
     winnerSymbol,
   } = useGameState(playersCount);
@@ -34,6 +36,26 @@ export default function HomePage() {
             Winner: <GameSymbol symbol={winnerSymbol} className="w-5 h-5" />
           </div>
         )}
+        <UiModal
+          width={"md"}
+          isOpen={!!winnerSymbol}
+          onClose={() => console.log("Close modal!")}
+        >
+          <UiModal.Header className={""}>Game Over!</UiModal.Header>
+          <UiModal.Body className={"px-6"}>
+            <div className="text-sm">
+              Winner: <span className="text-teal-600">SergeyV</span>
+            </div>
+          </UiModal.Body>
+          <UiModal.Footer className={"mt-auto p-6 flex gap-4 justify-end"}>
+            <UiButton size={"md"} variant={"outline"}>
+              Back
+            </UiButton>
+            <UiButton size={"md"} variant={"primary"}>
+              Play again
+            </UiButton>
+          </UiModal.Footer>
+        </UiModal>
         <GameField
           playersCount={playersCount}
           className={"mt-6"}

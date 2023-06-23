@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 
 type PropsType = {
   children: ReactNode;
-  className: string;
+  className?: string;
   size: "lg" | "md";
   variant: "primary" | "outline";
 };

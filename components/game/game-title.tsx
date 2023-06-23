@@ -1,9 +1,9 @@
 import * as React from "react";
 import Link from "next/link";
-import { ArrowLeftIcon } from "./icons/arrow-left-icon";
-import { StarIcon } from "./icons/star-icon";
-import { UserIcon } from "./icons/user-icon";
-import { HistoryIcon } from "./icons/history-icon";
+import { ArrowLeftIcon } from "../icons/arrow-left-icon";
+import { StarIcon } from "../icons/star-icon";
+import { UserIcon } from "../icons/user-icon";
+import { HistoryIcon } from "../icons/history-icon";
 
 type PropsType = {
   playersCount: number;

@@ -59,7 +59,6 @@ export const useGameState = (playersCount: number) => {
     nextMove,
     onCellClickHandler,
     winnerSequence,
-    playersTimeOver,
     handlePlayerTimeOver,
     winnerSymbol,
   };
