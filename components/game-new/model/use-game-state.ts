@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CROSS, SymbolType } from "../constants";
-import { computeWinner, getNextMove } from "../model";
+import { computeWinner } from "./compute-winner";
+import { getNextMove } from "./get-next-move";
 
 export type GameStateType = {
   cells: SymbolType[];
@@ -16,7 +17,7 @@ export const useGameState = (playersCount: number) => {
       playersTimeOver: [],
     }));
 
-  const winnerSequence = computeWinner(cells);
+  const winnerSequence: number[] = computeWinner(cells);
   const nextMove: SymbolType = getNextMove(
     currentMove,
     playersCount,

@@ -53,7 +53,7 @@ export function PlayerInfo({
       <div className={clsx("h-6 w-px bg-slate-200", isRight && "order-2")} />
       <div
         className={clsx(
-          "text-slate-900 text-lg font-semibold w-[60px]",
+          "text-lg font-semibold w-[60px]",
           isRight && "order-1",
           getTimerColor()
         )}
