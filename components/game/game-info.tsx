@@ -3,19 +3,6 @@ import { clsx } from "clsx";
 import { PlayerInfo } from "../player";
 import { CIRCLE, CROSS, SQUARE, SymbolType, TRIANGLE } from "./constants";
 
-export type PlayerType = {
-  id: number;
-  name: string;
-  rating: number;
-  avatar: string;
-  symbol: SymbolType;
-};
-
-const avatarDefault = require("../profile/avatar.png") as string;
-const avatarSrc1 = require("../player/avatar-1.png") as string;
-const avatarSrc2 = require("../player/avatar-2.png") as string;
-const avatarSrc3 = require("../player/avatar-3.png") as string;
-
 const players: PlayerType[] = [
   {
     id: 1,

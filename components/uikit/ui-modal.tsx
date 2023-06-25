@@ -2,7 +2,7 @@ import * as React from "react";
 import { clsx } from "clsx";
 import { MouseEvent, ReactNode, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { CrossLightIcon } from "../icons/cross-light-icon";
+import { CrossLightIcon } from "../game-new/ui/icons/cross-light-icon";
 
 type PropsType = {
   width: "md" | "full";

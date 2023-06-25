@@ -1,7 +1,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { Profile } from "../profile";
-import { ArrowDownIcon } from "../icons/arrow-down-icon";
+import { ArrowDownIcon } from "../game-new/ui/icons/arrow-down-icon";
 import { UiButton } from "../uikit/ui-button";
 
 const logo = require("./logo.svg") as string;

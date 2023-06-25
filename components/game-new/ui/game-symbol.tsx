@@ -1,9 +1,9 @@
 import * as React from "react";
-import { CIRCLE, CROSS, SQUARE, SymbolType, TRIANGLE } from "./constants";
-import { CrossIcon } from "../game-new/ui/icons/cross-icon";
-import { CircleIcon } from "../game-new/ui/icons/circle-icon";
-import { TriangleIcon } from "../game-new/ui/icons/triangle-icon";
-import { SquareIcon } from "../game-new/ui/icons/square-icon";
+import { SquareIcon } from "./icons/square-icon";
+import { CrossIcon } from "./icons/cross-icon";
+import { TriangleIcon } from "./icons/triangle-icon";
+import { CircleIcon } from "./icons/circle-icon";
+import { CIRCLE, CROSS, SQUARE, SymbolType, TRIANGLE } from "../constants";
 
 type PropsType = {
   symbol: SymbolType;
