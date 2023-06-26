@@ -3,26 +3,47 @@ import { GameLayout } from "./ui/game-layout";
 import { BackLink } from "./ui/back-link";
 import { GameTitle } from "./ui/game-title";
 import { GameInfo } from "./ui/game-info";
-import { PLAYERS } from "./constants";
+import { PLAYERS, SymbolType } from "./constants";
 import { PlayerInfo, PlayerType } from "./ui/player-info";
 import { GameMoveInfo } from "./ui/game-move-info";
 import { UiButton } from "../uikit/ui-button";
-import { useGameState } from "./model/use-game-state";
+import { GAME_STATE_ACTIONS, useGameState } from "./model/use-game-state";
 import { GameCell } from "./ui/game-cell";
 import { GameOverModal } from "./ui/game-over-modal";
+import {
+  cellClickAction,
+  gameStateReducer,
+  GameStateType,
+  initGameState,
+} from "./model/game-state-reducer";
+import { useReducer } from "react";
+import { getNextMove } from "./model/get-next-move";
+import { computeWinner } from "./model/compute-winner";
+import { computeWinnerSymbol } from "./model/compute-winner-symbol";
 
-const PLAYERS_COUNT = 2;
+const PLAYERS_COUNT: number = 2;
 
 export function Game() {
-  const {
-    cells,
-    currentMove,
+  const [gameState, dispatch] = useReducer<GameStateType>(
+    gameStateReducer,
+    { playersCount: PLAYERS_COUNT },
+    initGameState
+  );
+
+  const nextMove: SymbolType = getNextMove(
+    gameState.currentMove,
+    PLAYERS_COUNT
+  );
+
+  const winnerSequence: number[] = computeWinner(gameState);
+  const winnerSymbol: SymbolType = computeWinnerSymbol(
+    gameState,
     nextMove,
-    winnerSymbol,
-    winnerSequence,
-    onCellClickHandler,
-    handlePlayerTimeOver,
-  } = useGameState(PLAYERS_COUNT);
+    winnerSequence
+  );
+  const winnerPlayer: PlayerType = PLAYERS.find(
+    (player) => player.symbol === winnerSymbol
+  );
 
   const actions = (
     <>
@@ -33,10 +54,6 @@ export function Game() {
         Give up
       </UiButton>
     </>
-  );
-
-  const winnerPlayer: PlayerType = PLAYERS.find(
-    (player) => player.symbol === winnerSymbol
   );
 
   return (
@@ -57,22 +74,27 @@ export function Game() {
               key={player.id}
               player={player}
               isRight={index % 2 === 1}
-              isTimerRunning={currentMove === player.symbol && !winnerSymbol}
+              isTimerRunning={
+                gameState.currentMove === player.symbol && !winnerSymbol
+              }
               seconds={60}
             />
           );
         })}
         gameMoveInfo={
-          <GameMoveInfo currentMove={currentMove} nextMove={nextMove} />
+          <GameMoveInfo
+            currentMove={gameState.currentMove}
+            nextMove={nextMove}
+          />
         }
         actions={actions}
-        gameCells={cells.map((cell, index) => {
+        gameCells={gameState.cells.map((cell, index) => {
           return (
             <GameCell
               key={index}
               disabled={!!winnerSymbol}
               isWinner={winnerSequence?.includes(index)}
-              onClick={() => onCellClickHandler(index)}
+              onClick={() => dispatch(cellClickAction(index))}
               symbol={cell}
             />
           );

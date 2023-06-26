@@ -2,9 +2,9 @@ import * as React from "react";
 import { Profile } from "../profile";
 import { GameSymbol } from "../game/game-symbol";
 import { SymbolType } from "../game/constants";
-import { PlayerType } from "../game/game-info";
 import { clsx } from "clsx";
 import { useEffect, useState } from "react";
+import { PlayerType } from "../game-new/ui/player-info";
 
 type PropsType = {
   playerInfo: PlayerType;

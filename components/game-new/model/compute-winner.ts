@@ -1,10 +1,12 @@
 import { SymbolType } from "../constants";
+import { GameStateType } from "./game-state-reducer";
 
 export function computeWinner(
-  cells: SymbolType[],
+  gameState: GameStateType,
   sequenceSize: number = 5,
   fieldSize: number = 19
 ) {
+  const { cells } = gameState;
   const gap = Math.floor(sequenceSize / 2);
 
   function compareElements(indexes: number[]) {
