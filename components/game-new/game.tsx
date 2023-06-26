@@ -20,20 +20,24 @@ import { useReducer } from "react";
 import { getNextMove } from "./model/get-next-move";
 import { computeWinner } from "./model/compute-winner";
 import { computeWinnerSymbol } from "./model/compute-winner-symbol";
+import { computePlayerTimer } from "./model/compute-player-timer";
 
 const PLAYERS_COUNT: number = 2;
 
 export function Game() {
-  const [gameState, dispatch] = useReducer<GameStateType>(
+  const [gameState, dispatch] = useReducer<() => GameStateType>(
     gameStateReducer,
-    { playersCount: PLAYERS_COUNT },
+    {
+      playersCount: PLAYERS_COUNT,
+      defaultTimer: 60000,
+      currentMoveStart: Date.now(),
+    },
     initGameState
   );
 
-  const nextMove: SymbolType = getNextMove(
-    gameState.currentMove,
-    PLAYERS_COUNT
-  );
+  const { cells, currentMove, timers, currentMoveStart } = gameState;
+
+  const nextMove: SymbolType = getNextMove(currentMove, PLAYERS_COUNT);
 
   const winnerSequence: number[] = computeWinner(gameState);
   const winnerSymbol: SymbolType = computeWinnerSymbol(
@@ -56,6 +60,8 @@ export function Game() {
     </>
   );
 
+  console.log(gameState);
+
   return (
     <>
       <GameLayout
@@ -69,26 +75,26 @@ export function Game() {
           />
         }
         playersList={PLAYERS.slice(0, PLAYERS_COUNT).map((player, index) => {
+          const { timer, timerStartAt } = computePlayerTimer(
+            gameState,
+            player.symbol
+          );
           return (
             <PlayerInfo
               key={player.id}
               player={player}
               isRight={index % 2 === 1}
-              isTimerRunning={
-                gameState.currentMove === player.symbol && !winnerSymbol
-              }
-              seconds={60}
+              isTimerRunning={currentMove === player.symbol && !winnerSymbol}
+              timer={timer}
+              timerStartAt={timerStartAt}
             />
           );
         })}
         gameMoveInfo={
-          <GameMoveInfo
-            currentMove={gameState.currentMove}
-            nextMove={nextMove}
-          />
+          <GameMoveInfo currentMove={currentMove} nextMove={nextMove} />
         }
         actions={actions}
-        gameCells={gameState.cells.map((cell, index) => {
+        gameCells={cells.map((cell, index) => {
           return (
             <GameCell
               key={index}
@@ -103,15 +109,22 @@ export function Game() {
       <GameOverModal
         winnerName={winnerPlayer?.name}
         winnerSymbol={winnerSymbol}
-        players={PLAYERS.slice(0, PLAYERS_COUNT).map((player, index) => (
-          <PlayerInfo
-            key={player.id}
-            player={player}
-            isRight={index % 2 === 1}
-            isTimerRunning={false}
-            seconds={60}
-          />
-        ))}
+        players={PLAYERS.slice(0, PLAYERS_COUNT).map((player, index) => {
+          const { timer, timerStartAt } = computePlayerTimer(
+            gameState,
+            player.symbol
+          );
+          return (
+            <PlayerInfo
+              key={player.id}
+              player={player}
+              isRight={index % 2 === 1}
+              isTimerRunning={false}
+              timer={timer}
+              timerStartAt={timerStartAt}
+            />
+          );
+        })}
       />
     </>
   );
