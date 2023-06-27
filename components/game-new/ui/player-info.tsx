@@ -1,6 +1,5 @@
 import * as React from "react";
 import { clsx } from "clsx";
-import { Profile } from "../../profile";
 import { GameSymbol } from "./game-symbol";
 import { SymbolType } from "../constants";
 import { Player } from "./player";
@@ -18,7 +17,7 @@ type PropsType = {
   player: PlayerType;
   isRight: boolean;
   timer: number;
-  timerStartAt: number;
+  timerStartAt: boolean;
 };
 
 export function PlayerInfo({

@@ -2,19 +2,13 @@ import * as React from "react";
 import { ReactNode } from "react";
 import { UiModal } from "../../uikit/ui-modal";
 import { UiButton } from "../../uikit/ui-button";
-import { SymbolType } from "../constants";
 
 type PropsType = {
   winnerName: string;
-  winnerSymbol: SymbolType;
   players: ReactNode;
 };
 
-export function GameOverModal({
-  winnerName,
-  winnerSymbol,
-  players,
-}: PropsType) {
+export function GameOverModal({ winnerName, players }: PropsType) {
   return (
     <UiModal
       width={"md"}

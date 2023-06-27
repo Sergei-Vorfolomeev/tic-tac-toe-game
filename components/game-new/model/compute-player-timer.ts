@@ -1,13 +1,17 @@
-import { GameStateType } from "./game-state-reducer";
+import { GameStateType } from "./game-reducer";
 import { SymbolType } from "../constants";
 
 export function computePlayerTimer(
   gameState: GameStateType,
-  playerSymbol: SymbolType
+  playerSymbol: SymbolType,
+  winnerSymbol: SymbolType
 ) {
   const { currentMove, currentMoveStart, timers } = gameState;
   return {
     timer: timers[playerSymbol],
-    timerStartAt: currentMove === playerSymbol ? currentMoveStart : undefined,
+    timerStartAt:
+      currentMove === playerSymbol && !winnerSymbol
+        ? currentMoveStart
+        : undefined,
   };
 }

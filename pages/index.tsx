@@ -3,17 +3,6 @@ import { ReactNode } from "react";
 import { Game } from "../components/game-new";
 
 export default function HomePage() {
-  // const [playersCount, setPlayersCount] = useState(4);
-  // const {
-  //   cells,
-  //   currentMove,
-  //   nextMove,
-  //   onCellClickHandler,
-  //   winnerSequence,
-  //   handlePlayerTimeOver,
-  //   winnerSymbol,
-  // } = useGameState(playersCount);
-
   return (
     <HomePageLayout header={<Header />}>
       <Game />

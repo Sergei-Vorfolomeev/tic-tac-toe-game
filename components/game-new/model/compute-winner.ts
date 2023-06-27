@@ -1,5 +1,4 @@
-import { SymbolType } from "../constants";
-import { GameStateType } from "./game-state-reducer";
+import { GameStateType } from "./game-reducer";
 
 export function computeWinner(
   gameState: GameStateType,

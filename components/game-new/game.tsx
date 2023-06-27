@@ -7,26 +7,27 @@ import { PLAYERS, SymbolType } from "./constants";
 import { PlayerInfo, PlayerType } from "./ui/player-info";
 import { GameMoveInfo } from "./ui/game-move-info";
 import { UiButton } from "../uikit/ui-button";
-import { GAME_STATE_ACTIONS, useGameState } from "./model/use-game-state";
 import { GameCell } from "./ui/game-cell";
 import { GameOverModal } from "./ui/game-over-modal";
 import {
   cellClickAction,
-  gameStateReducer,
+  gameReducer,
   GameStateType,
   initGameState,
-} from "./model/game-state-reducer";
-import { useReducer } from "react";
+  tickAction,
+} from "./model/game-reducer";
+import { useCallback, useMemo, useReducer } from "react";
 import { getNextMove } from "./model/get-next-move";
 import { computeWinner } from "./model/compute-winner";
 import { computeWinnerSymbol } from "./model/compute-winner-symbol";
 import { computePlayerTimer } from "./model/compute-player-timer";
+import { useInterval } from "../libs/timers";
 
 const PLAYERS_COUNT: number = 2;
 
 export function Game() {
   const [gameState, dispatch] = useReducer<() => GameStateType>(
-    gameStateReducer,
+    gameReducer,
     {
       playersCount: PLAYERS_COUNT,
       defaultTimer: 60000,
@@ -35,11 +36,14 @@ export function Game() {
     initGameState
   );
 
-  const { cells, currentMove, timers, currentMoveStart } = gameState;
+  const { cells, currentMove, currentMoveStart } = gameState;
 
-  const nextMove: SymbolType = getNextMove(currentMove, PLAYERS_COUNT);
+  const nextMove: SymbolType = getNextMove(gameState);
 
-  const winnerSequence: number[] = computeWinner(gameState);
+  const winnerSequence: number[] = useMemo(
+    () => computeWinner(gameState),
+    [gameState]
+  );
   const winnerSymbol: SymbolType = computeWinnerSymbol(
     gameState,
     nextMove,
@@ -47,6 +51,14 @@ export function Game() {
   );
   const winnerPlayer: PlayerType = PLAYERS.find(
     (player) => player.symbol === winnerSymbol
+  );
+
+  useInterval(
+    1000,
+    currentMoveStart && !winnerSymbol,
+    useCallback(() => {
+      dispatch(tickAction());
+    }, [])
   );
 
   const actions = (
@@ -60,7 +72,9 @@ export function Game() {
     </>
   );
 
-  console.log(gameState);
+  const handleCellClick = useCallback((index: number) => {
+    dispatch(cellClickAction(index));
+  }, []);
 
   return (
     <>
@@ -77,14 +91,14 @@ export function Game() {
         playersList={PLAYERS.slice(0, PLAYERS_COUNT).map((player, index) => {
           const { timer, timerStartAt } = computePlayerTimer(
             gameState,
-            player.symbol
+            player.symbol,
+            winnerSymbol
           );
           return (
             <PlayerInfo
               key={player.id}
               player={player}
               isRight={index % 2 === 1}
-              isTimerRunning={currentMove === player.symbol && !winnerSymbol}
               timer={timer}
               timerStartAt={timerStartAt}
             />
@@ -98,9 +112,10 @@ export function Game() {
           return (
             <GameCell
               key={index}
+              index={index}
               disabled={!!winnerSymbol}
               isWinner={winnerSequence?.includes(index)}
-              onClick={() => dispatch(cellClickAction(index))}
+              onClick={handleCellClick}
               symbol={cell}
             />
           );
@@ -108,18 +123,17 @@ export function Game() {
       />
       <GameOverModal
         winnerName={winnerPlayer?.name}
-        winnerSymbol={winnerSymbol}
         players={PLAYERS.slice(0, PLAYERS_COUNT).map((player, index) => {
           const { timer, timerStartAt } = computePlayerTimer(
             gameState,
-            player.symbol
+            player.symbol,
+            winnerSymbol
           );
           return (
             <PlayerInfo
               key={player.id}
               player={player}
               isRight={index % 2 === 1}
-              isTimerRunning={false}
               timer={timer}
               timerStartAt={timerStartAt}
             />

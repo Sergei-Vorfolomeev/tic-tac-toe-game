@@ -20,3 +20,23 @@ export function useNow(interval: number, enabled: boolean) {
 
   return now;
 }
+
+export function useInterval(
+  interval: number,
+  enabled: boolean,
+  cb: () => void
+) {
+  useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+
+    const int = setInterval(() => {
+      cb();
+    }, interval);
+
+    return () => {
+      clearInterval(int);
+    };
+  }, [enabled, interval, cb]);
+}
