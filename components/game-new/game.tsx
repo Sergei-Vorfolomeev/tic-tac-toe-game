@@ -10,10 +10,12 @@ import { UiButton } from "../uikit/ui-button";
 import { GameCell } from "./ui/game-cell";
 import { GameOverModal } from "./ui/game-over-modal";
 import {
+  ActionsType,
   cellClickAction,
   gameReducer,
   GameStateType,
   initGameState,
+  InitialArgType,
   tickAction,
 } from "./model/game-reducer";
 import { useCallback, useMemo, useReducer } from "react";
@@ -26,7 +28,10 @@ import { useInterval } from "../libs/timers";
 const PLAYERS_COUNT: number = 2;
 
 export function Game() {
-  const [gameState, dispatch] = useReducer<() => GameStateType>(
+  const [gameState, dispatch] = useReducer<
+    (state: GameStateType, action: ActionsType) => GameStateType,
+    InitialArgType
+  >(
     gameReducer,
     {
       playersCount: PLAYERS_COUNT,
@@ -100,7 +105,7 @@ export function Game() {
               player={player}
               isRight={index % 2 === 1}
               timer={timer}
-              timerStartAt={timerStartAt}
+              timerStartAt={!!timerStartAt}
             />
           );
         })}
@@ -135,7 +140,7 @@ export function Game() {
               player={player}
               isRight={index % 2 === 1}
               timer={timer}
-              timerStartAt={timerStartAt}
+              timerStartAt={!!timerStartAt}
             />
           );
         })}

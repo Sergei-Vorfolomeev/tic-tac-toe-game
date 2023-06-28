@@ -9,12 +9,18 @@ export type GameStateType = {
   timers: {};
 };
 
+export type InitialArgType = {
+  playersCount: number;
+  defaultTimer: number;
+  currentMoveStart: number;
+};
+
 // init function
 export const initGameState = ({
   playersCount,
   defaultTimer,
   currentMoveStart,
-}): GameStateType => ({
+}: InitialArgType): GameStateType => ({
   cells: new Array(19 * 19).fill(null),
   currentMove: CROSS,
   currentMoveStart,
