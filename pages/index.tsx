@@ -6,13 +6,13 @@ import { UiTextField } from "../components/uikit/ui-text-field";
 export default function HomePage() {
   return (
     <HomePageLayout header={<Header />}>
-      <UiTextField
-        label={"Label"}
-        placeholder={"Placeholder"}
-        required
-        helperText={"Helper Text"}
-        errorMessage={""}
-      />
+      {/*<UiTextField*/}
+      {/*  label={"Label"}*/}
+      {/*  placeholder={"Placeholder"}*/}
+      {/*  required*/}
+      {/*  helperText={"Helper Text"}*/}
+      {/*  errorMessage={""}*/}
+      {/*/>*/}
       <Game />
     </HomePageLayout>
   );

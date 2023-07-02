@@ -1,6 +1,6 @@
 import * as React from "react";
 import { clsx } from "clsx";
-import { GameSymbol } from "../../game/game-symbol";
+import { GameSymbol } from "../../_game_old/game-symbol";
 import { SymbolType } from "../constants";
 import { memo } from "react";
 

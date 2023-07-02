@@ -17,7 +17,7 @@ type PropsType = {
   player: PlayerType;
   isRight: boolean;
   timer: number;
-  timerStartAt: boolean;
+  timerStartAt: number;
 };
 
 export function PlayerInfo({
@@ -26,7 +26,7 @@ export function PlayerInfo({
   timer,
   timerStartAt,
 }: PropsType) {
-  const now = useNow(1000, timerStartAt);
+  const now = useNow(1000, !!timerStartAt);
   const mils = Math.max(now ? timer - (now - timerStartAt) : timer, 0);
   const seconds = Math.ceil(mils / 1000);
   const minutesString = String(Math.floor(seconds / 60)).padStart(2, "0");

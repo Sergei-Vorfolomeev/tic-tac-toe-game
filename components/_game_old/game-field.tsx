@@ -5,7 +5,6 @@ import { GameMoveInfo } from "./game-move-info";
 import { GameGrid } from "./game-grid";
 import { GameCell } from "./game-cell";
 import { GameSymbol } from "./game-symbol";
-import { useGameState } from "../game-new/model/use-game-state";
 import { SymbolType } from "./constants";
 
 type PropsType = {

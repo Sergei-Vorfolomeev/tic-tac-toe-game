@@ -105,7 +105,7 @@ export function Game() {
               player={player}
               isRight={index % 2 === 1}
               timer={timer}
-              timerStartAt={!!timerStartAt}
+              timerStartAt={timerStartAt}
             />
           );
         })}
@@ -140,7 +140,7 @@ export function Game() {
               player={player}
               isRight={index % 2 === 1}
               timer={timer}
-              timerStartAt={!!timerStartAt}
+              timerStartAt={timerStartAt}
             />
           );
         })}

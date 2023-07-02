@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Profile } from "../profile";
-import { GameSymbol } from "../game/game-symbol";
-import { SymbolType } from "../game/constants";
+import { GameSymbol } from "../_game_old/game-symbol";
+import { SymbolType } from "../_game_old/constants";
 import { clsx } from "clsx";
 import { useEffect, useState } from "react";
 import { PlayerType } from "../game-new/ui/player-info";

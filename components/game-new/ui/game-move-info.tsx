@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GameSymbol } from "../../game/game-symbol";
+import { GameSymbol } from "../../_game_old/game-symbol";
 import { SymbolType } from "../constants";
 
 type PropsType = {
