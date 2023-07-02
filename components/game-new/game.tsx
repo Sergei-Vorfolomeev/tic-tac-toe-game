@@ -25,7 +25,7 @@ import { computeWinnerSymbol } from "./model/compute-winner-symbol";
 import { computePlayerTimer } from "./model/compute-player-timer";
 import { useInterval } from "../libs/timers";
 
-const PLAYERS_COUNT: number = 2;
+const PLAYERS_COUNT: number = 4;
 
 export function Game() {
   const [gameState, dispatch] = useReducer<
@@ -35,7 +35,7 @@ export function Game() {
     gameReducer,
     {
       playersCount: PLAYERS_COUNT,
-      defaultTimer: 60000,
+      defaultTimer: 30000,
       currentMoveStart: Date.now(),
     },
     initGameState
